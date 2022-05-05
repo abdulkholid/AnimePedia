@@ -47,7 +47,7 @@ const CollectionButton = () => {
 	return (
 		<ButtonStyle to="/collection">
 			<ButtonIconStyle src={ButtonIcon} />
-			{collections.length > 0 && <ButtonCounterStyle>{collections.length}</ButtonCounterStyle>}
+			{collections && <ButtonCounterStyle>{collections.length}</ButtonCounterStyle>}
 		</ButtonStyle>
 	);
 };

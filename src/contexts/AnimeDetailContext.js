@@ -9,6 +9,9 @@ const AnimeDetailContextProvider = (props) => {
 	const populate_collection_by_anime = () => {
 		let selected_collections = [];
 		const obj_anime_collections = JSON.parse(localStorage.getItem('collections'));
+		if (!obj_anime_collections) {
+			return [];
+		}
 		obj_anime_collections.forEach((element, index) => {
 			if (element.animes.includes(parseInt(id))) {
 				selected_collections.push({ name: element.name, index: index });
