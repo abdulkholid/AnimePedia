@@ -33,6 +33,13 @@ a {
   padding-bottom: 60px;
 }
 
+@media(min-width: 768px) {
+  .outer {
+    width: 400px;
+    margin: auto;
+  }
+}
+
 .form-group {
   margin-bottom: 15px;
 }
