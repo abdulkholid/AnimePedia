@@ -25,7 +25,7 @@ const ButtonSubmit = styled.button`
 
 const CollectionSelector = () => {
 	const { id } = useParams();
-	const { collections, setCollections, containsSpecialChars } = useContext(GlobalContext);
+	const { collections, setCollections, containsSpecialChars, similar_collection_name } = useContext(GlobalContext);
 	const { setAnime_collections, populate_collection_by_anime } = useContext(AnimeDetailContext);
 	const { setModalOpen } = useContext(AnimeDetailContext);
 	const [ newCollection, setNewCollection ] = useState(true);
@@ -75,9 +75,9 @@ const CollectionSelector = () => {
 					// first time insert
 					insertDataCollection(true, data);
 				} else {
-					const name_is_exists = collections.filter((item) => item.name === newCollectionName);
+					const similar_name = similar_collection_name(newCollectionName);
 					// validate unique name
-					if (name_is_exists.length > 0) {
+					if (similar_name.length > 0) {
 						alert('Collection Name already exist. Try a new one!');
 					} else {
 						collections.push(data);
@@ -105,11 +105,12 @@ const CollectionSelector = () => {
 			<div className="form-group">
 				<select onChange={change_collection_selector}>
 					<option value="new">Create New Collection</option>
-					{collections.map((collection, key) => (
-						<option key={key} value={key}>
-							{collection.name}
-						</option>
-					))}
+					{collections &&
+						collections.map((collection, key) => (
+							<option key={key} value={key}>
+								{collection.name}
+							</option>
+						))}
 				</select>
 			</div>
 			{newCollection && (

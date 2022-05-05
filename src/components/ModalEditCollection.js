@@ -67,8 +67,9 @@ const ModalStyle = styled.div`
 
 const ModalEditCollection = () => {
 	const { setModalEditOpen, editedID } = useContext(CollectionDetailContext);
-	const { collections, setCollections, containsSpecialChars } = useContext(GlobalContext);
+	const { collections, setCollections, containsSpecialChars, similar_collection_name } = useContext(GlobalContext);
 	const selected_selection = collections[editedID];
+	const old_name = selected_selection.name;
 	const [ collectionName, setCollectionName ] = useState(selected_selection.name);
 
 	const updateCollection = (e) => {
@@ -79,13 +80,22 @@ const ModalEditCollection = () => {
 			if (containsSpecialChars(collectionName)) {
 				alert('Collection Name contains special characters. Remove them now!');
 			} else {
-				const current_collections = collections;
-				current_collections[editedID]['name'] = collectionName;
-				console.log(current_collections);
-				localStorage.setItem('collections', JSON.stringify(current_collections));
-				setCollections(JSON.parse(localStorage.getItem('collections')));
-				alert('Success updating Collection.');
-				setModalEditOpen(false);
+				if (old_name === collectionName) {
+					alert('You do not change current name');
+				} else {
+					const similar_name = similar_collection_name(collectionName);
+					if (similar_name.length > 0) {
+						alert('Collection Name already exist. Try a new one!');
+					} else {
+						const current_collections = collections;
+						current_collections[editedID]['name'] = collectionName;
+						console.log(current_collections);
+						localStorage.setItem('collections', JSON.stringify(current_collections));
+						setCollections(JSON.parse(localStorage.getItem('collections')));
+						alert('Success updating Collection.');
+						setModalEditOpen(false);
+					}
+				}
 			}
 		}
 	};

@@ -19,7 +19,9 @@ const AddCollectionButton = () => {
 	const { modalAddOpen, setModalAddOpen } = useContext(CollectionDetailContext);
 	return (
 		<div>
-			<AddCollectionButtonStyle onClick={() => setModalAddOpen(true)}>Add a Collection</AddCollectionButtonStyle>
+			<AddCollectionButtonStyle onClick={() => setModalAddOpen(true)}>
+				Add New Collection
+			</AddCollectionButtonStyle>
 			{modalAddOpen && <AddNewCollection />}
 		</div>
 	);

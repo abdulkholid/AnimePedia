@@ -67,7 +67,7 @@ const ModalStyle = styled.div`
 
 const AddNewCollection = () => {
 	const [ collectionName, setCollectionName ] = useState('');
-	const { collections, setCollections, containsSpecialChars } = useContext(GlobalContext);
+	const { collections, setCollections, containsSpecialChars, similar_collection_name } = useContext(GlobalContext);
 	const { setModalAddOpen } = useContext(CollectionDetailContext);
 
 	const submitNewCollection = (e) => {
@@ -78,17 +78,22 @@ const AddNewCollection = () => {
 			if (containsSpecialChars(collectionName)) {
 				alert('Collection Name contains special characters. Remove them now!');
 			} else {
-				const current_collections = collections;
-				const data = {
-					name: collectionName,
-					cover: null,
-					animes: []
-				};
-				current_collections.push(data);
-				localStorage.setItem('collections', JSON.stringify(current_collections));
-				setCollections(JSON.parse(localStorage.getItem('collections')));
-				alert('Success inserting New Collection.');
-				setModalAddOpen(false);
+				const similar_name = similar_collection_name(collectionName);
+				if (similar_name.length > 0) {
+					alert('Collection Name already exist. Try a new one!');
+				} else {
+					const current_collections = collections ? collections : [];
+					const data = {
+						name: collectionName,
+						cover: null,
+						animes: []
+					};
+					current_collections.push(data);
+					localStorage.setItem('collections', JSON.stringify(current_collections));
+					setCollections(JSON.parse(localStorage.getItem('collections')));
+					alert('Success inserting New Collection.');
+					setModalAddOpen(false);
+				}
 			}
 		}
 	};

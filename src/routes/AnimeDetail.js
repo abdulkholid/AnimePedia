@@ -37,7 +37,7 @@ const AnimeDetail = () => {
 		const anime = data.Page.media[0];
 		const AnimeHighlights = [
 			{ name: 'Episode', count: anime.episodes },
-			{ name: 'Rating', count: anime.averageScore / 10 },
+			{ name: 'Rating', count: (anime.averageScore / 10).toFixed(1) },
 			{ name: 'Year', count: anime.seasonYear }
 		];
 

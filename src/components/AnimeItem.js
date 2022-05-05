@@ -86,7 +86,7 @@ const AnimeItem = ({ anime, show_delete }) => {
 			<AnimeItemStyle to={`/${anime.id}/detail`} style={{ backgroundImage: `url(${anime.coverImage.medium})` }}>
 				<div className="content">
 					<div className="detail">
-						<span className="bg-yellow">{anime.averageScore / 10}</span>
+						<span className="bg-yellow">{(anime.averageScore / 10).toFixed(1)}</span>
 						<span>Year {anime.seasonYear}</span>
 					</div>
 					<div className="title">{anime.title.english}</div>
@@ -95,7 +95,7 @@ const AnimeItem = ({ anime, show_delete }) => {
 			{show_delete && (
 				<RemoveAnimeButtonStyle
 					onClick={() => {
-						if (window.confirm('Are you sure want to remove this Anime?')) {
+						if (window.confirm(`Are you sure want to remove Anime "${anime.title.english}"?`)) {
 							removeAnime(anime.id);
 						}
 					}}>
