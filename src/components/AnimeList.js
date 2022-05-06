@@ -43,7 +43,7 @@ const PaginationStyle = styled.ul`
 `;
 
 const AnimeList = ({ filter }) => {
-	const perpage = !filter ? 10 : 40;
+	const perpage = !filter ? 10 : 50;
 	const [ currentPage, setCurrentPage ] = useState(1);
 	const { loading, data } = useQuery(GET_ANIME, { variables: { perPage: perpage, page: currentPage } });
 
