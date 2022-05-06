@@ -1,4 +1,4 @@
-# ANIMEPEDIA - Mini App For Anime Fans, Built on React Js.
+# ANIMEPEDIA <br/> Mini App For Anime Fans, Built on React Js.
 LIVE DEMO: https://animepedia.vercel.app/
 
 Thanks to..
