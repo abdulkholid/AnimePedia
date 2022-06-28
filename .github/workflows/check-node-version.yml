@@ -16,4 +16,5 @@ jobs:
                   port: ${{ secrets.PORT }}
                   script: |
                       cd /var/www/html/AnimePedia/
+                      npm install
                       npm run build
