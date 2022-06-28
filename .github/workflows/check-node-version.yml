@@ -1,9 +1,16 @@
 name: "Simple Workflow Node Version Checker"
-on: [push]
+on:
+    push:
+        branches: [master]
 jobs:
-    check-node-version-jobs:
+    build:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
-            - run: node --version
+            - name: Install Dependencies
+              run: npm ci
+            - name: Run Test
+              run: npm run test
+            - name: Run Build
+              run: npm run build
