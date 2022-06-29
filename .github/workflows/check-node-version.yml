@@ -18,7 +18,7 @@ jobs:
                   script: |
                       cd /var/www/html/AnimePedia/
                       git pull origin master
-                      export NVM_DIR=~/.nvms
+                      export NVM_DIR=~/.nvm
                       source ~/.nvm/nvm.sh
                       git status
                       npm install
