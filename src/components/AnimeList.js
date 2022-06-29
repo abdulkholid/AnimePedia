@@ -48,7 +48,7 @@ const AnimeList = ({ filter }) => {
 	const { loading, data } = useQuery(GET_ANIME, { variables: { perPage: perpage, page: currentPage } });
 
 	if (loading) {
-		return `Loading...`;
+		return `Tungguu...`;
 	} else {
 		const animes = data.Page.media ? data.Page.media : [];
 		const buttonCount = 5;
